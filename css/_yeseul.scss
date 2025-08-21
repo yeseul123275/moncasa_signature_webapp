@@ -1,41 +1,90 @@
 #yeseul {
-  .img3list {
-    ul {
-      gap: 20px;
-      list-style: none;
-    }
-  }
+
+ 
 
   .img3title {
     p {
-      font-size: 17px;
-      color: $basicText;
-      opacity: 50%;
+      font-size: calc(12px + (17 - 12) * ((100vw - 375px) / (1920 - 375)));
+     
+      
       font-family: $mainFont500;
       line-height: 20px;
     }
 
     h3 {
-      font-size: 50px;
-      color: $basicText;
+      font-size: calc(16px + (50 - 16) * ((100vw - 375px) / (1920 - 375)));
+     
+      font-family: $mainFont700;
+    }
+    .span {
+      font-size: calc(16px + (50 - 16) * ((100vw - 375px) / (1920 - 375)));
+     
       font-family: $mainFont700;
     }
   }
+    button {
+     font-family: $mainFont600;
+     font-size: calc(16px + (20 - 16) * ((100vw - 1199px) / (1920 - 1199)));
+     border: 1px solid white;
 
-  .content-container {
-    @include flex-column;
-    width: 260px;
-    gap: 50px;
-  }
+      // 기본 padding (375px일 때 최소값 기준)
+     padding: calc(14px + (27 - 14) * ((100vw - 375px) / (1920 - 375)))
+           calc(16px + (32 - 16) * ((100vw - 375px) / (1920 - 375)));
 
-  button {
-    width: 173px;
-    height: 68px;
-    background-color: $mainColor;
-    font-family: $mainFont600;
-    border-radius: 150px;
-    font-size: 20px;
-    border: 0;
+      // 1199px 이하에서는 고정값
+    @media (max-width: 1199px) {
+     font-size: 16px;
+     padding: 14px 16px;
+    }
   }
 }
 
+@media (max-width: 375px) {
+  .content-container {
+    display: flex;          /* gap이 적용되려면 flex나 grid여야 해요 */
+    flex-direction: column; /* 세로 정렬 */
+    gap: 20px;               /* h3와 button 사이 간격 */
+  }
+}
+@media (max-width: 375px) {
+  .d-flex.flex-column.gap-20 p {
+    padding-bottom: 8px;
+  }
+}
+@media (max-width: 1199px) {
+  .img3title {
+    background-color: $mainColor;
+    p {
+      font-size: calc(12px + (17 - 12) * ((100vw - 375px) / (1920 - 375)));
+      color: #ffffff;
+      opacity: 50%;
+      font-family: $mainFont500;
+      line-height: normal;
+    }
+
+    h3 {
+      font-size: calc(16px + (50 - 16) * ((100vw - 375px) / (1920 - 375)));
+      color: #ffffff;
+      font-family: $mainFont700;
+    }
+    .span {
+      font-size: calc(16px + (50 - 16) * ((100vw - 375px) / (1920 - 375)));
+      color: #ffffff;
+      font-family: $mainFont700;
+    }
+  }
+  .custom-padding {
+  // 기본값: 최소 사이즈(375px 기준 → p-1)
+  padding: calc(0.25rem + (0.5rem - 0.25rem) * ((100vw - 375px) / (1920 - 375)));
+
+  // 1199px 이하에서는 p-1 고정
+  @media (max-width: 1199px) {
+    padding: 0.25rem !important; // p-1
+  }
+
+  // 1920px에서는 p-2 고정
+  @media (min-width: 1920px) {
+    padding: 0.5rem !important; // p-2
+  }
+ }
+}
